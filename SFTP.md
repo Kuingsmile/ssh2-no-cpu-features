@@ -17,21 +17,21 @@ _Responses to these client requests are sent using one of the methods listed fur
 
     Respond using one of the following:
 
-    * `handle()` - This indicates a successful opening of the file and passes
+  * `handle()` - This indicates a successful opening of the file and passes
       the given handle back to the client to use to refer to this open file for
       future operations (e.g. reading, writing, closing).
 
-    * `status()` - Use this to indicate a failure to open the requested file.
+  * `status()` - Use this to indicate a failure to open the requested file.
 
 * **READ**(< _integer_ >reqID, < _Buffer_ >handle, < _integer_ >offset, < _integer_ >length)
 
     Respond using one of the following:
 
-    * `data()` - Use this to send the requested chunk of data back to the client.
+  * `data()` - Use this to send the requested chunk of data back to the client.
       The amount of data sent is allowed to be less than the `length` requested,
       for example if the file ends between `offset` and `offset + length`.
 
-    * `status()` - Use this to indicate either end of file (`STATUS_CODE.EOF`)
+  * `status()` - Use this to indicate either end of file (`STATUS_CODE.EOF`)
       has been reached (`offset` is past the end of the file) or if an error
       occurred while reading the requested part of the file.
 
@@ -39,51 +39,51 @@ _Responses to these client requests are sent using one of the methods listed fur
 
     Respond using:
 
-    * `status()` - Use this to indicate success/failure of the write to the file.
+  * `status()` - Use this to indicate success/failure of the write to the file.
 
 * **FSTAT**(< _integer_ >reqID, < _Buffer_ >handle)
 
     Respond using one of the following:
 
-    * `attrs()` - Use this to send the attributes for the requested
+  * `attrs()` - Use this to send the attributes for the requested
       file/directory back to the client.
 
-    * `status()` - Use this to indicate an error occurred while accessing the
+  * `status()` - Use this to indicate an error occurred while accessing the
       file/directory.
 
 * **FSETSTAT**(< _integer_ >reqID, < _Buffer_ >handle, < _ATTRS_ >attrs)
 
     Respond using:
 
-    * `status()` - Use this to indicates success/failure of the setting of the
+  * `status()` - Use this to indicates success/failure of the setting of the
       given file/directory attributes.
 
 * **CLOSE**(< _integer_ >reqID, < _Buffer_ >handle)
 
     Respond using:
 
-    * `status()` - Use this to indicate success (`STATUS_CODE.OK`) or failure of
+  * `status()` - Use this to indicate success (`STATUS_CODE.OK`) or failure of
       the closing of the file identified by `handle`.
 
 * **OPENDIR**(< _integer_ >reqID, < _string_ >path)
 
     Respond using one of the following:
 
-    * `handle()` - This indicates a successful opening of the directory and
+  * `handle()` - This indicates a successful opening of the directory and
       passes the given handle back to the client to use to refer to this open
       directory for future operations (e.g. reading directory contents, closing).
 
-    * `status()` - Use this to indicate a failure to open the requested
+  * `status()` - Use this to indicate a failure to open the requested
       directory.
 
 * **READDIR**(< _integer_ >reqID, < _Buffer_ >handle)
 
     Respond using one of the following:
 
-    * `name()` - Use this to send one or more directory listings for the open
+  * `name()` - Use this to send one or more directory listings for the open
       directory back to the client.
 
-    * `status()` - Use this to indicate either end of directory contents
+  * `status()` - Use this to indicate either end of directory contents
       (`STATUS_CODE.EOF`) or if an error occurred while reading the directory
       contents.
 
@@ -91,82 +91,81 @@ _Responses to these client requests are sent using one of the methods listed fur
 
     Respond using one of the following:
 
-    * `attrs()` - Use this to send the attributes for the requested
+  * `attrs()` - Use this to send the attributes for the requested
       file/directory back to the client.
 
-    * `status()` - Use this to indicate an error occurred while accessing the
+  * `status()` - Use this to indicate an error occurred while accessing the
       file/directory.
 
 * **STAT**(< _integer_ >reqID, < _string_ >path)
 
     Respond using one of the following:
 
-    * `attrs()` - Use this to send the attributes for the requested
+  * `attrs()` - Use this to send the attributes for the requested
       file/directory back to the client.
 
-    * `status()` - Use this to indicate an error occurred while accessing the
+  * `status()` - Use this to indicate an error occurred while accessing the
       file/directory.
 
 * **REMOVE**(< _integer_ >reqID, < _string_ >path)
 
     Respond using:
 
-    * `status()` - Use this to indicate success/failure of the removal of the
+  * `status()` - Use this to indicate success/failure of the removal of the
       file at `path`.
 
 * **RMDIR**(< _integer_ >reqID, < _string_ >path)
 
     Respond using:
 
-    * `status()` - Use this to indicate success/failure of the removal of the
+  * `status()` - Use this to indicate success/failure of the removal of the
       directory at `path`.
 
 * **REALPATH**(< _integer_ >reqID, < _string_ >path)
 
     Respond using one of the following:
 
-    * `name()` - Use this to respond with a normalized version of `path`.
+  * `name()` - Use this to respond with a normalized version of `path`.
       No file/directory attributes are required to be sent in this response.
 
-    * `status()` - Use this to indicate a failure in normalizing `path`.
+  * `status()` - Use this to indicate a failure in normalizing `path`.
 
 * **READLINK**(< _integer_ >reqID, < _string_ >path)
 
     Respond using one of the following:
 
-    * `name()` - Use this to respond with the target of the symlink at `path`.
+  * `name()` - Use this to respond with the target of the symlink at `path`.
       No file/directory attributes are required to be sent in this response.
 
-    * `status()` - Use this to indicate a failure in reading the symlink at
+  * `status()` - Use this to indicate a failure in reading the symlink at
       `path`.
 
 * **SETSTAT**(< _integer_ >reqID, < _string_ >path, < _ATTRS_ >attrs)
 
     Respond using:
 
-    * `status()` - Use this to indicates success/failure of the setting of the
+  * `status()` - Use this to indicates success/failure of the setting of the
       given file/directory attributes.
 
 * **MKDIR**(< _integer_ >reqID, < _string_ >path, < _ATTRS_ >attrs)
 
     Respond using:
 
-    * `status()` - Use this to indicate success/failure of the creation of the
+  * `status()` - Use this to indicate success/failure of the creation of the
       directory at `path`.
 
 * **RENAME**(< _integer_ >reqID, < _string_ >oldPath, < _string_ >newPath)
 
     Respond using:
 
-    * `status()` - Use this to indicate success/failure of the renaming of the
+  * `status()` - Use this to indicate success/failure of the renaming of the
       file/directory at `oldPath` to `newPath`.
 
 * **SYMLINK**(< _integer_ >reqID, < _string_ >linkPath, < _string_ >targetPath)
 
     Respond using:
 
-    * `status()` - Use this to indicate success/failure of the symlink creation.
-
+  * `status()` - Use this to indicate success/failure of the symlink creation.
 
 Useful standalone data structures
 ---------------------------------
@@ -201,7 +200,6 @@ Useful standalone data structures
 
   * `EXCL`
 
-
 Useful standalone methods
 -------------------------
 
@@ -209,39 +207,36 @@ Useful standalone methods
 
 * **flagsToString**(< _integer_ >flagsMask) - _string_ - Converts flag mask (e.g. number containing `OPEN_MODE` values) to the appropriate string value. Returns `null` if conversion failed.
 
-
 SFTP methods
 ------------
 
 * **(constructor)**(< _object_ >config[, < _string_ >remoteIdentRaw]) - Creates and returns a new SFTP instance. `remoteIdentRaw` can be the raw SSH identification string of the remote party. This is used to change internal behavior based on particular SFTP implementations. `config` can contain:
 
-    * **server** - _boolean_ - Set to `true` to create an instance in server mode. **Default:** `false`
+  * **server** - _boolean_ - Set to `true` to create an instance in server mode. **Default:** `false`
 
-    * **debug** - _function_ - Set this to a function that receives a single string argument to get detailed (local) debug information. **Default:** (none)
-
-
+  * **debug** - _function_ - Set this to a function that receives a single string argument to get detailed (local) debug information. **Default:** (none)
 
 **Client-only methods**
 
 * **fastGet**(< _string_ >remotePath, < _string_ >localPath[, < _object_ >options], < _function_ >callback) - _(void)_ - Downloads a file at `remotePath` to `localPath` using parallel reads for faster throughput. `options` can have the following properties:
 
-    * **concurrency** - _integer_ - Number of concurrent reads **Default:** `64`
+  * **concurrency** - _integer_ - Number of concurrent reads **Default:** `64`
 
-    * **chunkSize** - _integer_ - Size of each read in bytes **Default:** `32768`
+  * **chunkSize** - _integer_ - Size of each read in bytes **Default:** `32768`
 
-    * **step** - _function_(< _integer_ >total_transferred, < _integer_ >chunk, < _integer_ >total) - Called every time a part of a file was transferred
+  * **step** - _function_(< _integer_ >total_transferred, < _integer_ >chunk, < _integer_ >total) - Called every time a part of a file was transferred
 
     `callback` has 1 parameter: < _Error_ >err.
 
 * **fastPut**(< _string_ >localPath, < _string_ >remotePath[, < _object_ >options], < _function_ >callback) - _(void)_ - Uploads a file from `localPath` to `remotePath` using parallel reads for faster throughput. `options` can have the following properties:
 
-    * **concurrency** - _integer_ - Number of concurrent reads **Default:** `64`
+  * **concurrency** - _integer_ - Number of concurrent reads **Default:** `64`
 
-    * **chunkSize** - _integer_ - Size of each read in bytes **Default:** `32768`
+  * **chunkSize** - _integer_ - Size of each read in bytes **Default:** `32768`
 
-    * **step** - _function_(< _integer_ >total_transferred, < _integer_ >chunk, < _integer_ >total) - Called every time a part of a file was transferred
+  * **step** - _function_(< _integer_ >total_transferred, < _integer_ >chunk, < _integer_ >total) - Called every time a part of a file was transferred
 
-    * **mode** - _mixed_ - Integer or string representing the file mode to set for the uploaded file.
+  * **mode** - _mixed_ - Integer or string representing the file mode to set for the uploaded file.
 
     `callback` has 1 parameter: < _Error_ >err.
 
@@ -349,7 +344,6 @@ SFTP methods
 
 * **ext_users_groups**(< _array_ >uids, < _array_ >gids, < _function_ >callback) - _(void)_ - Retrieves the user names and group names associated with the user IDs in `uids` and group IDs in `gids` respectively. Either array can be empty or contain one or more 32-bit unsigned integers. The retrieved user names and group names match the same order as the IDs in `uids` and `gids` respectively. If the server was unable to find a name for a given ID, it will use an empty string. `callback` has 3 parameters: < _Error_ >err, < _array_ >userNames, < _array_ >groupNames.
 
-
 **Server-only methods**
 
 * **status**(< _integer_ >reqID, < _integer_ >statusCode[, < _string_ >message]) - _(void)_ - Sends a status response for the request identified by `id`.
@@ -360,14 +354,13 @@ SFTP methods
 
 * **name**(< _integer_ >reqID, < _array_ >names) - _(void)_ - Sends a name response for the request identified by `id`. `names` must be an _array_ of _object_ where each _object_ can contain:
 
-    * **filename** - _string_ - The entry's name.
+  * **filename** - _string_ - The entry's name.
 
-    * **longname** - _string_ - This is the `ls -l`-style format for the entry (e.g. `-rwxr--r--  1 bar   bar       718 Dec  8  2009 foo`)
+  * **longname** - _string_ - This is the `ls -l`-style format for the entry (e.g. `-rwxr--r--  1 bar   bar       718 Dec  8  2009 foo`)
 
-    * **attrs** - _ATTRS_ - This is an optional _ATTRS_ object that contains requested/available attributes for the entry.
+  * **attrs** - _ATTRS_ - This is an optional _ATTRS_ object that contains requested/available attributes for the entry.
 
 * **attrs**(< _integer_ >reqID, < _ATTRS_ >attrs) - _(void)_ - Sends an attrs response for the request identified by `id`. `attrs` contains the requested/available attributes.
-
 
 ATTRS
 -----
@@ -391,7 +384,6 @@ When supplying an ATTRS object to one of the SFTP methods:
 * `atime` and `mtime` can be either a Date instance or a UNIX timestamp.
 
 * `mode` can either be an integer or a string containing an octal number.
-
 
 Stats
 -----
